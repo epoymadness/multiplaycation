@@ -40,28 +40,6 @@ body {
   margin: 0;
 }
 
-@media (max-width: 768px) {
-  .menu {
-    overflow: hidden;
-    padding: 50px;
-    text-align: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    font-size: 16px;
-  }
-
-  .container {
-    width: 100vw; /* Full viewport width */
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .submit:hover {
-    transform: none;
-  }
-}
-
 .funWith {
   font-family: "Comic Relief", sans-serif;
   color: #292929;
@@ -387,4 +365,48 @@ body {
 
 #tryIndi {
   font-size: 25px;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    overflow: hidden;
+    padding: 50px;
+    text-align: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-size: 16px;
+  }
+
+  .container {
+    width: 100vw; /* Full viewport width */
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .submit:hover {
+    transform: none;
+  }
+
+  .questBox {
+    width: 350px;
+    margin-left: 4px;
+  }
+
+  .multiContainer {
+    width: 350px;
+    margin-left: 10px;
+  }
+
+  .pracTice p {
+    font-size: 20px;
+  }
+
+  .multiContainer h1 {
+    font-size: 50px;
+  }
+
+  .score {
+    width: 82%;
+  }
 }
