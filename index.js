@@ -382,3 +382,13 @@ function result() {
   tryAgain.textContent = "Restart Game";
   tryAgain.classList.remove("hidden");
 }
+
+const button = document.querySelector(".submit");
+
+button.addEventListener("touchstart", () => {
+  button.classList.add("touched");
+});
+
+button.addEventListener("touchend", () => {
+  button.classList.remove("touched");
+});
