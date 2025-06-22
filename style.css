@@ -175,7 +175,7 @@ body {
 }
 
 .submit.touched {
-  background-color: #ff9f80;
+  transform: scale(1.05);
 }
 
 .inputBox {
