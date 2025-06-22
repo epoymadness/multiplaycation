@@ -52,9 +52,13 @@ body {
   }
 
   .container {
-    overflow: hidden;
     width: 100vw; /* Full viewport width */
     height: 100vh;
+    padding: 20px;
+  }
+
+  .submit:hover {
+    transform: none;
   }
 }
 
@@ -180,17 +184,11 @@ body {
   border-radius: 10px;
   background-color: #eeec80;
   font-size: 20px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .submit:hover {
   transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-  .submit:hover {
-    transform: none;
-  }
 }
 
 .inputBox {
