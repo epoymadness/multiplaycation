@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math Mastery</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="menu" id="menu">
+        <h1 class="title">MATH <br />MASTERY</h1>
+        <p class="funWith">Fun with Numbers x Learn with Play!</p>
+        <button onclick="play()" class="playBtn">
+          <img src="play.png" alt="" width="30px" />
+          PLAY
+        </button>
+      </div>
+
+      <div class="hidden" id="game">
+        <div class="multiContainer">
+          <div class="multi">
+            <p>multi</p>
+            <h1 class="PL">PL</h1>
+            <h1 class="AY">AY</h1>
+            <p>cation</p>
+          </div>
+          <div class="pracTice">
+            <p>Let's practice our times table</p>
+          </div>
+        </div>
+        <div class="questBox" id="questBox">
+          <div class="hidden" id="resultBox">
+            <h1>GAME OVER</h1>
+            <p id="begScore"></p>
+            <p id="interScore"></p>
+            <p id="exScore"></p>
+          </div>
+          <div id="ttlScoreBox" class="hidden">
+            <h3 id="totalScore"></h3>
+          </div>
+          <div class="score" id="levelScore">
+            <p id="round">easy</p>
+            <p id="score" class="scoreBox">Score:</p>
+          </div>
+          <div class="problem" id="problem">
+            <h1 id="solve" class="solve"></h1>
+            <p class="hidden" id="tryIndi"></p>
+          </div>
+          <div class="answerBox" id="answerBox">
+            <input
+              type="text"
+              class="inputBox"
+              id="userAnswer"
+              placeholder="Enter your answer"
+            />
+            <button class="submit" id="submitBtn">Submit</button>
+            <button class="hidden" id="tryAgain" onclick="showQuestion()">
+              Try Again
+            </button>
+            <button class="hidden" id="nextLvl" onclick="showQuestion()">
+              Level up!
+            </button>
+            <button class="hidden" id="result" onclick="showQuestion()">
+              Level up!
+            </button>
+            <button class="hidden" id="finalResult" onclick="result()">
+              Check your score
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="index.js" defer></script>
+</html>
