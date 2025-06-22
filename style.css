@@ -185,13 +185,11 @@ body {
 
 .submit:hover {
   transform: scale(1.05);
-  color: #6a94cc;
 }
 
 @media (max-width: 768px) {
   .submit:hover {
     transform: none;
-    color: none;
   }
 }
 
