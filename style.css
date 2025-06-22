@@ -54,7 +54,7 @@ body {
   .container {
     width: 100vw; /* Full viewport width */
     height: 100vh;
-    padding: 20px;
+    overflow: hidden;
   }
 
   .submit:hover {
