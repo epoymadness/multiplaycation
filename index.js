@@ -104,9 +104,14 @@ function checkAnswer() {
 
   const userAnswer = document.getElementById("userAnswer");
   const userAnswerValue = userAnswer.value;
+  const checkPop = document.getElementById("rightWrong");
+  const popup = document.getElementById("popup-content");
 
   if (userAnswerValue == correctAnswer) {
     console.log("correct answer");
+    checkPop.textContent = "Correct";
+    popup.style.backgroundColor = "#B0DB9C";
+    popup.style.color = "#fff";
     if (round === "beginner") {
       score++;
     } else if (round === "intermediate") {
@@ -115,6 +120,9 @@ function checkAnswer() {
       score += 10;
     }
   } else {
+    checkPop.textContent = "Wrong";
+    popup.style.backgroundColor = "#DA6C6C";
+    popup.style.color = "#fff";
     console.log("incorrect answer");
     if (round === "beginner") {
       score--;
@@ -154,8 +162,17 @@ function checkAnswer() {
     const finalResult = document.getElementById("finalResult");
     finalResult.classList.remove("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent =
-      "Great work! you completed all the levels and got " + score + " points!";
+    if (expertScore === 300) {
+      tryIndi.textContent =
+        "Great work! you completed all the levels and got a perfect " +
+        score +
+        " points!";
+    } else {
+      tryIndi.textContent =
+        "Great work! you completed all the levels and got " +
+        score +
+        " points!";
+    }
     levelScore.classList.add("hidden");
     lvlInd.classList.add("hidden");
     userAnswer.classList.add("hidden");
@@ -181,7 +198,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `You got ${score} points but you can try again!`;
+    tryIndi.textContent = `You've got ${score} point, give it one more try!`;
     solve.textContent = "You can try again!";
     number = 0;
   }
@@ -204,7 +221,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `You got ${score} points and failed!`;
+    tryIndi.textContent = `You got ${score} points, don't give up.`;
     solve.textContent = "You can try again!";
     number = 0;
     round = "beginner";
@@ -227,7 +244,12 @@ function checkAnswer() {
     const result = document.getElementById("result");
     const levelScore = document.getElementById("levelScore");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `You got ${score} points! Let's move to the next level!`;
+    if (hardScore === 100) {
+      tryIndi.textContent =
+        "You achieved a perfect score, you can proceed to the next level.";
+    } else {
+      tryIndi.textContent = `You got ${score} points! Let's move to the next level!`;
+    }
     levelScore.classList.add("hidden");
     result.classList.remove("hidden");
     lvlInd.classList.add("hidden");
@@ -254,7 +276,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `You got ${score} points but you can try again!`;
+    tryIndi.textContent = `You've got ${score} point, give it one more try!'`;
     solve.textContent = "You can try again!";
     number = 0;
   }
@@ -277,7 +299,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `You got ${score} points and failed!`;
+    tryIndi.textContent = `You got ${score} points, don't give up.`;
     solve.textContent = "You can try again!";
     number = 0;
     round = "beginner";
@@ -300,7 +322,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `You got ${score} points but you can try again!`;
+    tryIndi.textContent = `You've got ${score} point, give it one more try!`;
     solve.textContent = "You can try again!";
     number = 0;
   }
@@ -323,19 +345,21 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `You got ${score} points and failed!`;
+    tryIndi.textContent = `You got ${score}, don't give up.`;
     solve.textContent = "You can try again!";
     number = 0;
   }
 
   // leveling up
   if (round === "beginner" && score > 7 && number === 16) {
+    const tryIndi = document.getElementById("tryIndi");
+
     // tochange
     easyScore = score;
+
     console.log("easy score: " + easyScore);
     round = "intermediate";
     number = 0;
-    const tryIndi = document.getElementById("tryIndi");
     const userAnswer = document.getElementById("userAnswer");
     const lvlInd = document.getElementById("round");
     const lvlUp = document.getElementById("nextLvl");
@@ -343,7 +367,12 @@ function checkAnswer() {
     const submitBtn = document.getElementById("submitBtn");
     const levelScore = document.getElementById("levelScore");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `You got ${score} points! Let's move to the next level!`;
+    if (easyScore === 15) {
+      tryIndi.textContent =
+        "You achieved a perfect score, you can proceed to the next level.";
+    } else {
+      tryIndi.textContent = `You got ${score} points! Let's move to the next level!`;
+    }
     solve.classList.add("hidden");
     levelScore.classList.add("hidden");
     lvlInd.classList.add("hidden");
@@ -382,3 +411,22 @@ function result() {
   tryAgain.textContent = "Restart Game";
   tryAgain.classList.remove("hidden");
 }
+
+const openBtn = document.getElementById("submitBtn");
+const closeBtn = document.getElementById("closeBtn");
+const popup = document.getElementById("popup");
+
+openBtn.onclick = () => {
+  popup.style.display = "flex";
+};
+
+closeBtn.onclick = () => {
+  popup.style.display = "none";
+};
+
+// Optional: Close when clicking outside the popup content
+window.onclick = (e) => {
+  if (e.target === popup) {
+    popup.style.display = "none";
+  }
+};
