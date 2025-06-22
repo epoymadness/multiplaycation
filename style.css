@@ -505,7 +505,7 @@ body {
   }
 
   .mech-content {
-    height: 75vh;
+    height: max-content;
   }
 
   .mech-content p {
