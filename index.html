@@ -16,6 +16,30 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="mechanic" class="mechanic">
+      <div class="mech-content" id="mech-content">
+        <span id="mechCloseBtn" class="mechCloseBtn">&times;</span>
+        <h2 id="Rules">MECHANICS</h2>
+        <p>
+          If the user gets 0 points,they will be reset to the beginner level.
+        </p>
+        <p>
+          If the user scores some points but below the passing score,they cannot
+          proceed to the next level and must retry the current round.
+        </p>
+        <p>
+          If the user scores above the passing score, they can proceed to the
+          next level.
+        </p>
+        <p>
+          If the user gets a perfect score, they will receive a bit of praise
+          and can advance to the next level.
+        </p>
+        <p>Beginner Round: 15 items, 1 point each.</p>
+        <p>Intermediate Round: 20 items, 5 points each.</p>
+        <p>Expert Round: 30 items, 10 points each.</p>
+      </div>
+    </div>
     <div id="popup" class="popup">
       <div class="popup-content" id="popup-content">
         <span id="closeBtn" class="close">&times;</span>
@@ -34,6 +58,9 @@
             oncontextmenu="return false"
           />
           PLAY
+        </button>
+        <button class="setBtn" id="setBtn">
+          <img src="setting.png" width="38px" alt="" />
         </button>
       </div>
 
