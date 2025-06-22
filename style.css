@@ -174,13 +174,13 @@ body {
   transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
-submit:hover {
+.submit:hover {
   transform: scale(1.05);
   color: #6a94cc;
 }
 
 @media (max-width: 768px) {
-  .submit.touched {
+  .submit.active {
     transform: scale(0.95);
   }
 
