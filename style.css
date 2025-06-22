@@ -447,8 +447,8 @@ body {
 
 .mechCloseBtn {
   position: absolute;
-  right: 10px;
-  top: 5px;
+  right: 50px;
+  top: 25px;
   font-size: 24px;
   cursor: pointer;
 }
@@ -505,7 +505,15 @@ body {
   }
 
   .mech-content {
-    height: 90vh;
+    height: 75vh;
+  }
+
+  .mech-content p {
+    font-size: 15px;
+  }
+
+  .mech-content h2 {
+    font-size: 25px;
   }
 }
 
