@@ -176,13 +176,9 @@ body {
 
 @media (max-width: 768px) {
   .submit:active {
+    color: #6a94cc;
     transform: scale(0.95);
   }
-}
-
-.submit:hover {
-  color: #6a94cc;
-  transform: scale(1.05);
 }
 
 .inputBox {
