@@ -181,7 +181,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `you've got ${score} points but you can try again!`;
+    tryIndi.textContent = `you got ${score} points but you can try again!`;
     solve.textContent = "You can try again!";
     number = 0;
   }
@@ -204,7 +204,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `you've got ${score} points and failed!`;
+    tryIndi.textContent = `you got ${score} points and failed!`;
     solve.textContent = "You can try again!";
     number = 0;
     round = "beginner";
@@ -227,7 +227,7 @@ function checkAnswer() {
     const result = document.getElementById("result");
     const levelScore = document.getElementById("levelScore");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `got ${score} points! Let's move to the next level!`;
+    tryIndi.textContent = `you got ${score} points! Let's move to the next level!`;
     levelScore.classList.add("hidden");
     result.classList.remove("hidden");
     lvlInd.classList.add("hidden");
@@ -254,7 +254,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `you've got ${score} points but you can try again!`;
+    tryIndi.textContent = `you got ${score} points but you can try again!`;
     solve.textContent = "You can try again!";
     number = 0;
   }
@@ -277,7 +277,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `you've got ${score} points and failed!`;
+    tryIndi.textContent = `you got ${score} points and failed!`;
     solve.textContent = "You can try again!";
     number = 0;
     round = "beginner";
@@ -300,7 +300,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `you've got ${score} points but you can try again!`;
+    tryIndi.textContent = `you got ${score} points but you can try again!`;
     solve.textContent = "You can try again!";
     number = 0;
   }
@@ -323,7 +323,7 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `you've got ${score} points and failed!`;
+    tryIndi.textContent = `you got ${score} points and failed!`;
     solve.textContent = "You can try again!";
     number = 0;
   }
@@ -343,7 +343,7 @@ function checkAnswer() {
     const submitBtn = document.getElementById("submitBtn");
     const levelScore = document.getElementById("levelScore");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = `got ${score} points! Let's move to the next level!`;
+    tryIndi.textContent = `you got ${score} points! Let's move to the next level!`;
     solve.classList.add("hidden");
     levelScore.classList.add("hidden");
     lvlInd.classList.add("hidden");
@@ -373,9 +373,9 @@ function result() {
   const ttlScoreBox = document.getElementById("ttlScoreBox");
   ttlScoreBox.classList.remove("hidden");
   resultBox.classList.remove("hidden");
-  begScore.textContent = `Beginner Level Score: ${easyScore}`;
-  interScore.textContent = `Intermediate Level Score: ${hardScore}`;
-  exScore.textContent = `Expert Level Score: ${expertScore}`;
+  begScore.textContent = `Beginner Level Score: ${easyScore} / 15`;
+  interScore.textContent = `Intermediate Level Score: ${hardScore} / 100`;
+  exScore.textContent = `Expert Level Score: ${expertScore} / 300`;
   totalScore.textContent = `Total Score: ${
     easyScore + hardScore + expertScore
   }`;
