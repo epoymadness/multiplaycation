@@ -14,27 +14,53 @@ let score = 0;
 let number = 0;
 let round = "beginner";
 
+// Store previous values
+let lastNum1 = null,
+  lastNum2 = null;
+let prevNum1 = null,
+  prevNum2 = null;
+
+function generateNumbers(round) {
+  let num1, num2;
+
+  do {
+    if (round === "beginner") {
+      num1 = Math.floor(Math.random() * 10) + 1; // 1–10
+      num2 = Math.floor(Math.random() * 10) + 1;
+    } else if (round === "intermediate") {
+      num1 = Math.floor(Math.random() * 11) + 10; // 10–20
+      num2 = Math.floor(Math.random() * 11) + 10;
+    } else if (round === "expert") {
+      num1 = Math.floor(Math.random() * 11) + 20; // 20–30
+      num2 = Math.floor(Math.random() * 11) + 20;
+    }
+
+    // Repeat only if num1 or num2 repeated 3 times in a row
+  } while (
+    (num1 === lastNum1 && num1 === prevNum1) ||
+    (num2 === lastNum2 && num2 === prevNum2)
+  );
+
+  // Update previous tracking
+  prevNum1 = lastNum1;
+  lastNum1 = num1;
+
+  prevNum2 = lastNum2;
+  lastNum2 = num2;
+
+  return { num1, num2 };
+}
+
 document.getElementById("submitBtn").addEventListener("click", checkAnswer);
 
 function showQuestion() {
-  let num1, num2;
-
   if (number === 0) {
     score = 0;
     const scoreDisplay = document.getElementById("score");
     scoreDisplay.textContent = `Score: ${score}`;
   }
 
-  if (round === "beginner") {
-    num1 = Math.floor(Math.random() * 5) + 1;
-    num2 = Math.floor(Math.random() * 5) + 1;
-  } else if (round === "intermediate") {
-    num1 = Math.floor(Math.random() * 6) + 5;
-    num2 = Math.floor(Math.random() * 6) + 5;
-  } else if (round === "expert") {
-    num1 = Math.floor(Math.random() * 10) + 11;
-    num2 = Math.floor(Math.random() * 10) + 11;
-  }
+  const { num1, num2 } = generateNumbers(round);
 
   const tryAgain = document.getElementById("tryAgain");
   tryAgain.textContent = "Try Again";
@@ -111,7 +137,7 @@ function checkAnswer() {
   scoreDisplay.textContent = `Score: ${score}`;
 
   // expert level
-  if (score > 0 && number === 11 && round === "expert") {
+  if (score > 150 && number === 31 && round === "expert") {
     expertScore = score;
     round = "beginner";
     number = 0;
@@ -128,7 +154,8 @@ function checkAnswer() {
     const finalResult = document.getElementById("finalResult");
     finalResult.classList.remove("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = "Great work! you completed all the levels";
+    tryIndi.textContent =
+      "Great work! you completed all the levels and got " + score + " points!";
     levelScore.classList.add("hidden");
     lvlInd.classList.add("hidden");
     userAnswer.classList.add("hidden");
@@ -137,8 +164,54 @@ function checkAnswer() {
     lvlUp.classList.add("hidden");
   }
 
+  // try again expert level
+  if (score === 0 && number === 31 && round === "expert") {
+    const tAgain = document.getElementById("tryAgain");
+    tAgain.classList.remove("hidden");
+    // buttons
+    const round = document.getElementById("round");
+    const userAnswer = document.getElementById("userAnswer");
+    const solve = document.getElementById("solve");
+    const tryIndi = document.getElementById("tryIndi");
+    const submitBtn = document.getElementById("submitBtn");
+    const levelScore = document.getElementById("levelScore");
+    levelScore.classList.add("hidden");
+    round.classList.add("hidden");
+    userAnswer.classList.add("hidden");
+    submitBtn.classList.add("hidden");
+    solve.classList.add("hidden");
+    tryIndi.classList.remove("hidden");
+    tryIndi.textContent = `you've got ${score} points but you can try again!`;
+    solve.textContent = "You can try again!";
+    number = 0;
+  }
+
+  // restart expert level
+  if (score < 150 && number === 31 && round === "expert") {
+    const tAgain = document.getElementById("tryAgain");
+    tAgain.textContent = "Restart";
+    tAgain.classList.remove("hidden");
+    // buttons
+    const roundInd = document.getElementById("round");
+    const userAnswer = document.getElementById("userAnswer");
+    const solve = document.getElementById("solve");
+    const tryIndi = document.getElementById("tryIndi");
+    const submitBtn = document.getElementById("submitBtn");
+    const levelScore = document.getElementById("levelScore");
+    levelScore.classList.add("hidden");
+    roundInd.classList.add("hidden");
+    userAnswer.classList.add("hidden");
+    submitBtn.classList.add("hidden");
+    solve.classList.add("hidden");
+    tryIndi.classList.remove("hidden");
+    tryIndi.textContent = `you've got ${score} points and failed!`;
+    solve.textContent = "You can try again!";
+    number = 0;
+    round = "beginner";
+  }
+
   //intermediate level
-  if (score > 0 && number === 11 && round === "intermediate") {
+  if (score > 50 && number === 21 && round === "intermediate") {
     hardScore = score;
     round = "expert";
     number = 0;
@@ -154,7 +227,7 @@ function checkAnswer() {
     const result = document.getElementById("result");
     const levelScore = document.getElementById("levelScore");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = "Great job! Let's level up!";
+    tryIndi.textContent = `got ${score} points! Let's move to the next level!`;
     levelScore.classList.add("hidden");
     result.classList.remove("hidden");
     lvlInd.classList.add("hidden");
@@ -164,11 +237,10 @@ function checkAnswer() {
     lvlUp.classList.add("hidden");
   }
 
-  // try again
-  if (score === 0 && number === 11) {
+  // try again inter level
+  if (score === 0 && number === 21 && round === "intermediate") {
     const tAgain = document.getElementById("tryAgain");
     tAgain.classList.remove("hidden");
-
     // buttons
     const round = document.getElementById("round");
     const userAnswer = document.getElementById("userAnswer");
@@ -182,13 +254,82 @@ function checkAnswer() {
     submitBtn.classList.add("hidden");
     solve.classList.add("hidden");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = "Don't give up!";
+    tryIndi.textContent = `you've got ${score} points but you can try again!`;
+    solve.textContent = "You can try again!";
+    number = 0;
+  }
+
+  // restart inter level
+  if (score < 50 && number === 21 && round === "intermediate") {
+    const tAgain = document.getElementById("tryAgain");
+    tAgain.textContent = "Restart";
+    tAgain.classList.remove("hidden");
+    // buttons
+    const roundInd = document.getElementById("round");
+    const userAnswer = document.getElementById("userAnswer");
+    const solve = document.getElementById("solve");
+    const tryIndi = document.getElementById("tryIndi");
+    const submitBtn = document.getElementById("submitBtn");
+    const levelScore = document.getElementById("levelScore");
+    levelScore.classList.add("hidden");
+    roundInd.classList.add("hidden");
+    userAnswer.classList.add("hidden");
+    submitBtn.classList.add("hidden");
+    solve.classList.add("hidden");
+    tryIndi.classList.remove("hidden");
+    tryIndi.textContent = `you've got ${score} points and failed!`;
+    solve.textContent = "You can try again!";
+    number = 0;
+    round = "beginner";
+  }
+
+  // try again beginner level
+  if (score === 0 && number === 16 && round === "beginner") {
+    const tAgain = document.getElementById("tryAgain");
+    tAgain.classList.remove("hidden");
+    // buttons
+    const round = document.getElementById("round");
+    const userAnswer = document.getElementById("userAnswer");
+    const solve = document.getElementById("solve");
+    const tryIndi = document.getElementById("tryIndi");
+    const submitBtn = document.getElementById("submitBtn");
+    const levelScore = document.getElementById("levelScore");
+    levelScore.classList.add("hidden");
+    round.classList.add("hidden");
+    userAnswer.classList.add("hidden");
+    submitBtn.classList.add("hidden");
+    solve.classList.add("hidden");
+    tryIndi.classList.remove("hidden");
+    tryIndi.textContent = `you've got ${score} points but you can try again!`;
+    solve.textContent = "You can try again!";
+    number = 0;
+  }
+
+  // restart beginner level
+  if (score < 7 && number === 16 && round === "beginner") {
+    const tAgain = document.getElementById("tryAgain");
+    tAgain.textContent = "Restart";
+    tAgain.classList.remove("hidden");
+    // buttons
+    const round = document.getElementById("round");
+    const userAnswer = document.getElementById("userAnswer");
+    const solve = document.getElementById("solve");
+    const tryIndi = document.getElementById("tryIndi");
+    const submitBtn = document.getElementById("submitBtn");
+    const levelScore = document.getElementById("levelScore");
+    levelScore.classList.add("hidden");
+    round.classList.add("hidden");
+    userAnswer.classList.add("hidden");
+    submitBtn.classList.add("hidden");
+    solve.classList.add("hidden");
+    tryIndi.classList.remove("hidden");
+    tryIndi.textContent = `you've got ${score} points and failed!`;
     solve.textContent = "You can try again!";
     number = 0;
   }
 
   // leveling up
-  if (round === "beginner" && score > 0 && number === 11) {
+  if (round === "beginner" && score > 7 && number === 16) {
     // tochange
     easyScore = score;
     console.log("easy score: " + easyScore);
@@ -202,7 +343,7 @@ function checkAnswer() {
     const submitBtn = document.getElementById("submitBtn");
     const levelScore = document.getElementById("levelScore");
     tryIndi.classList.remove("hidden");
-    tryIndi.textContent = "Great job! Let's level up!";
+    tryIndi.textContent = `got ${score} points! Let's move to the next level!`;
     solve.classList.add("hidden");
     levelScore.classList.add("hidden");
     lvlInd.classList.add("hidden");
